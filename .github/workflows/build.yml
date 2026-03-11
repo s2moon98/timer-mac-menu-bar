@@ -26,6 +26,10 @@ jobs:
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY=""
 
+      - name: Ad-hoc sign app
+        run: |
+          codesign --force --deep --sign - build/Build/Products/Release/timer.app
+
       - name: Create DMG
         run: |
           APP_PATH="build/Build/Products/Release/timer.app"
