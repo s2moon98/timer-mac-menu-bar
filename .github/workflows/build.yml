@@ -1,0 +1,51 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build app (unsigned)
+        run: |
+          xcodebuild \
+            -project timer.xcodeproj \
+            -scheme timer \
+            -configuration Release \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=""
+
+      - name: Create DMG
+        run: |
+          APP_PATH="build/Build/Products/Release/timer.app"
+          DMG_PATH="timer.dmg"
+
+          # Create a temporary directory for DMG contents
+          mkdir -p dmg_staging
+          cp -R "$APP_PATH" dmg_staging/
+
+          # Create symlink to /Applications
+          ln -s /Applications dmg_staging/Applications
+
+          # Build the DMG
+          hdiutil create \
+            -volname "Timer" \
+            -srcfolder dmg_staging \
+            -ov \
+            -format UDZO \
+            "$DMG_PATH"
+
+      - name: Upload DMG to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: timer.dmg
+          generate_release_notes: true
