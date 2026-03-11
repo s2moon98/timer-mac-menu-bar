@@ -1,5 +1,7 @@
 # Timer — Mac Menu Bar
 
+<img src="assets/icon.png" width="128" alt="Timer icon">
+
 A minimal stopwatch that lives in your macOS menu bar.
 
 ![macOS](https://img.shields.io/badge/macOS-13%2B-blue)
@@ -19,6 +21,11 @@ A minimal stopwatch that lives in your macOS menu bar.
 2. Download `timer.dmg`
 3. Open the DMG and drag **timer.app** to your Applications folder
 4. Right-click the app → **Open** (required once for unsigned builds)
+5. If you see a Gatekeeper warning, run this in Terminal:
+   ```bash
+   xattr -cr /Applications/timer.app
+   ```
+   Or go to **System Settings → Privacy & Security → Open Anyway**
 
 ### Build from source
 
@@ -33,6 +40,8 @@ open timer.xcodeproj
 Build and run with `Cmd+R`.
 
 ## Usage
+
+![Screenshot](assets/screenshot.jpg)
 
 Click the `⏱️ 00:00` icon in the menu bar to open the menu:
 
