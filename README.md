@@ -19,6 +19,11 @@ A minimal stopwatch that lives in your macOS menu bar.
 2. Download `timer.dmg`
 3. Open the DMG and drag **timer.app** to your Applications folder
 4. Right-click the app → **Open** (required once for unsigned builds)
+5. If you see a Gatekeeper warning, run this in Terminal:
+   ```bash
+   xattr -cr /Applications/timer.app
+   ```
+   Or go to **System Settings → Privacy & Security → Open Anyway**
 
 ### Build from source
 
