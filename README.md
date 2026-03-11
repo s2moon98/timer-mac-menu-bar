@@ -1,5 +1,7 @@
 # Timer — Mac Menu Bar
 
+<img src="assets/icon.png" width="128" alt="Timer icon">
+
 A minimal stopwatch that lives in your macOS menu bar.
 
 ![macOS](https://img.shields.io/badge/macOS-13%2B-blue)
@@ -38,6 +40,8 @@ open timer.xcodeproj
 Build and run with `Cmd+R`.
 
 ## Usage
+
+![Screenshot](assets/screenshot.jpg)
 
 Click the `⏱️ 00:00` icon in the menu bar to open the menu:
 
